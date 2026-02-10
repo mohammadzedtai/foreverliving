@@ -384,10 +384,10 @@
             let address = document.getElementById("address").value.trim();
             let gender = document.querySelector('input[name="gender"]:checked');
             let worktime = document.querySelector('input[name="worktime"]:checked');
-            let Male= document.getElementById("Male")
-            let Female=document.getElementById("Female")
-            let partTime=document.getElementById("partTime")
-            let fullTime=document.getElementById("fullTime")
+            let Male= document.getElementById("Male").value.trim();
+            let Female=document.getElementById("Female").value.trim();
+            let partTime=document.getElementById("partTime").value.trim();
+            let fullTime=document.getElementById("fullTime").value.trim();
 
             if (!name || !email || !mobile || !address || !gender || !worktime) {
                 alert("Please fill all required fields!");
