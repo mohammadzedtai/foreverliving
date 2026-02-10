@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="https://w7.pngwing.com/pngs/969/609/png-transparent-arrow-target-corporation-bullseye-target-miscellaneous-spiral-heart-thumbnail.png">
-    <title>WORK WITH ME</title>
+    <link rel="icon"
+        href="https://w7.pngwing.com/pngs/969/609/png-transparent-arrow-target-corporation-bullseye-target-miscellaneous-spiral-heart-thumbnail.png">
+    <title>Work With ME</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
         * {
             margin: 0;
@@ -13,76 +15,404 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
-        .hero {
-            height: 100vh;
-            width: 100%;
-            background-image: url("https://images.unsplash.com/photo-1554224155-6726b3ff858f");
+        body {
+            background-image: url("https://images.unsplash.com/photo-1521791136064-7986c2920216");
             background-size: cover;
             background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            position: relative;
+            background-attachment: fixed;
         }
 
-        /* Glass Effect Box */
         .overlay {
             background: rgba(0, 0, 0, 0.4);
-            padding: 40px 80px;
-            border-radius: 20px;
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+
+        .header {
             text-align: center;
-            backdrop-filter: blur(8px);
             color: white;
+            padding: 40px 20px 20px 20px;
         }
 
-        .overlay h1 {
-            font-size: 50px;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
+        .header h1 {
+            font-size: 32px;
+            letter-spacing: 1px;
         }
 
-        .overlay p {
-            font-size: 22px;
-        }
-
-        /* Start Button */
-        #startBtn {
-            margin-top: 30px;
-            padding: 15px 40px;
+        .header p {
+            margin-top: 8px;
             font-size: 18px;
+        }
+
+        .form-container {
+            width: 90%;
+            max-width: 700px;
+            margin: 20px auto;
+        }
+
+        .card {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .card-title {
+            background: #8b5a3c;
+            color: white;
+            padding: 12px 15px;
+            font-weight: bold;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+            width: 100%;
             border: none;
-            border-radius: 8px;
-            background: #c68b59;
-            color: white;
+            border-bottom: 1px solid #ccc;
+            padding: 8px 5px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus {
+            border-bottom: 2px solid #8b5a3c;
+        }
+
+        .radio-group {
+            margin-top: 10px;
+        }
+
+        .radio-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .required {
+            display: inline-block;
+            background: rgb(209, 207, 207);
+            padding: 4px 8px;
+            font-size: 12px;
+            border-radius: 4px;
+            margin-top: 10px;
+            color: black;
+        }
+
+        .btn-clear {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 8px 15px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: 0.3s;
         }
 
-        #startBtn:hover {
-            background: #a86c3a;
-            transform: scale(1.05);
+        .btn-clear:hover {
+            background: #f1f1f1;
         }
 
-        a {
-            text-decoration: none;
+        .btn-submit {
+            background: #8b5a3c;
             color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
         }
 
+        .btn-submit:hover {
+            background: #6e442d;
+        }
+
+        .btn-back {
+            background: #555;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .btn-back:hover {
+            background: #333;
+        }
+
+        .progress {
+            text-align: center;
+            background: #8b5a3c;
+            color: white;
+            padding: 8px;
+            width: 200px;
+            margin: 20px auto;
+            border-radius: 20px;
+        }
+
+        @media(max-width:600px) {
+            .header h1 {
+                font-size: 22px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="hero">
-        <div class="overlay">
+    <div class="overlay">
+        <!-- <a href="home.html"><button class="btn-back">⬅ Back</button></a> -->
+        <div class="header">
             <h1>WORK WITH ME 🚀 🎯</h1>
             <p>Collect Contact Information</p>
         </div>
 
-        <a href="./index.html"><button id="startBtn">START</button></a>
+        <div class="form-container">
+
+            <!-- Name -->
+            <div class="card">
+                <div class="card-title">1. Name</div>
+                <div class="card-body">
+                    <input type="text" id="name" oninput="checkProgress()">
+                    <div class="required" id="Required">Required</div>
+                </div>
+            </div>
+
+            <!-- Gender -->
+            <div class="card">
+                <div class="card-title">2. Gender</div>
+                <div class="card-body">
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" id="Male" name="gender" value="Male" onclick="checkProgress()"> Male
+                        </label>
+                        <label>
+                            <input type="radio" id="Female" name="gender" value="Female" onclick="checkProgress()">
+                            Female
+                        </label>
+                    </div>
+                    <div class="required" id="gender-re">Required</div>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="card">
+                <div class="card-title">3. E-Mail</div>
+                <div class="card-body">
+                    <input type="email" id="email" oninput="checkProgress()">
+                    <div class="required" id="email-re">Required</div>
+                </div>
+            </div>
+
+            <!-- Mobile -->
+            <div class="card">
+                <div class="card-title">4. Mobile Number</div>
+                <div class="card-body">
+                    <input type="number" id="mobile" oninput="checkProgress()">
+                    <div class="required" id="mobile-re">Required</div>
+                </div>
+            </div>
+
+            <!-- Address -->
+            <div class="card">
+                <div class="card-title">5. Address</div>
+                <div class="card-body">
+                    <input type="text" id="address" oninput="checkProgress()">
+                    <div class="required" id="address-re">Required</div>
+                </div>
+            </div>
+
+            <!-- Work Time -->
+            <div class="card">
+                <div class="card-title">6. Work-Time</div>
+                <div class="card-body">
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" id="partTime" name="worktime" value="Part-Time"
+                                onclick="checkProgress()">
+                            Part-Time
+                        </label>
+                        <label>
+                            <input type="radio" id="fullTime" name="worktime" value="Full-Time"
+                                onclick="checkProgress()">
+                            Full-Time
+                        </label>
+                    </div>
+                    <div class="required" id="worktime-re">Required</div>
+                </div>
+            </div>
+
+            <button class="btn-clear" onclick="clearForm()">Clear form</button>
+            <button class="btn-submit" onclick="submitForm()">Submit</button>
+
+        </div>
+
+        <div class="progress" id="progressText">
+            Answered 0 of 6
+        </div>
+
     </div>
 
+
+
+    <!-- EmailJS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+    <!-- EmailJS Init -->
+    <script>
+        (function () {
+            emailjs.init("Ro3VTsYRjvQowjIjg"); // <-- Replace with your Public Key
+        })();
+
+
+
+    </script>
+
+
+    <script>
+
+        // ---------------- CHECK PROGRESS ----------------
+        function checkProgress() {
+            let count = 0;
+
+            // name
+            let nameInput = document.getElementById("name").value.trim();
+            let nameReq = document.getElementById("Required");
+            if (nameInput !== "") {
+                count++;
+                nameReq.style.backgroundColor = "green";
+                nameReq.style.color = "white";
+            } else {
+                nameReq.style.backgroundColor = "red";
+                nameReq.style.color = "white";
+            }
+
+            // email
+            // email
+            let emailInput = document.getElementById("email").value.trim();
+            let emailReq = document.getElementById("email-re");
+
+            // check if not empty AND contains "@"
+            if (emailInput !== "" && emailInput.includes("@gmail.com")) {
+                count++;
+                emailReq.style.backgroundColor = "green";
+                emailReq.style.color = "white";
+            } else {
+                count; // no increase
+                emailReq.style.backgroundColor = "red";
+                emailReq.style.color = "white";
+            }
+
+
+            // mobile
+            let mobileInput = document.getElementById("mobile").value.trim();
+            let mobileReq = document.getElementById("mobile-re");
+            if (mobileInput !== "") {
+                count++;
+                mobileReq.style.backgroundColor = "green";
+                mobileReq.style.color = "white";
+            } else {
+                mobileReq.style.backgroundColor = "red";
+                mobileReq.style.color = "white";
+            }
+
+            // address
+            let addressInput = document.getElementById("address").value.trim();
+            let addressReq = document.getElementById("address-re");
+            if (addressInput !== "") {
+                count++;
+                addressReq.style.backgroundColor = "green";
+                addressReq.style.color = "white";
+            } else {
+                addressReq.style.backgroundColor = "red";
+                addressReq.style.color = "white";
+            }
+
+            // gender
+            let genderSelected = document.querySelector('input[name="gender"]:checked');
+            let genderReq = document.getElementById("gender-re");
+            if (genderSelected) {
+                count++;
+                genderReq.style.backgroundColor = "green";
+                genderReq.style.color = "white";
+            } else {
+                genderReq.style.backgroundColor = "red";
+                genderReq.style.color = "white";
+            }
+
+            // worktime
+            let workSelected = document.querySelector('input[name="worktime"]:checked');
+            let workReq = document.getElementById("worktime-re");
+            if (workSelected) {
+                count++;
+                workReq.style.backgroundColor = "green";
+                workReq.style.color = "white";
+            } else {
+                workReq.style.backgroundColor = "red";
+                workReq.style.color = "white";
+            }
+
+            // update progress
+            document.getElementById("progressText").innerText = "Answered " + count + " of 6";
+        }
+
+        // ---------------- CLEAR FORM ----------------
+        function clearForm() {
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("mobile").value = "";
+            document.getElementById("address").value = "";
+
+            let genderRadios = document.querySelectorAll('input[name="gender"]');
+            genderRadios.forEach(r => r.checked = false);
+
+            let workRadios = document.querySelectorAll('input[name="worktime"]');
+            workRadios.forEach(r => r.checked = false);
+
+            checkProgress();
+        }
+
+        // ---------------- SUBMIT FORM ----------------
+        function submitForm() {
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let mobile = document.getElementById("mobile").value.trim();
+            let address = document.getElementById("address").value.trim();
+            let gender = document.querySelector('input[name="gender"]:checked');
+            let worktime = document.querySelector('input[name="worktime"]:checked');
+            let Male= document.getElementById("Male").value.trim();
+            let Female=document.getElementById("Female").value.trim();
+            let partTime=document.getElementById("partTime").value.trim();
+            let fullTime=document.getElementById("fullTime").value.trim();
+
+            if (!name || !email || !mobile || !address || !gender || !worktime) {
+                alert("Please fill all required fields!");
+                return;
+            }
+
+            alert("Form Submitted Successfully ✅");
+            window.location.href = "zaid.html"
+
+
+
+            emailjs.send("service_naoycqy", "template_mee34dc", { name, Male, Female, email, Number, address, partTime, fullTime })
+                .then(() => {
+                    alert("Employee details sent via email!");
+                })
+                .catch((err) => {
+                    console.error("Email failed", err);
+                    alert("Failed to send email!");
+                });
+
+
+        }
+
+
+    </script>
 
 </body>
 
