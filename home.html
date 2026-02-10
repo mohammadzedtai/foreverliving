@@ -84,6 +84,16 @@
             border-bottom: 2px solid #8b5a3c;
         }
 
+        .required {
+            display: inline-block;
+            background: red;
+            padding: 4px 8px;
+            font-size: 12px;
+            border-radius: 4px;
+            margin-top: 10px;
+            color: white;
+        }
+
         .radio-group {
             margin-top: 10px;
         }
@@ -92,16 +102,6 @@
             display: block;
             margin-bottom: 8px;
             font-size: 16px;
-        }
-
-        .required {
-            display: inline-block;
-            background: rgb(209, 207, 207);
-            padding: 4px 8px;
-            font-size: 12px;
-            border-radius: 4px;
-            margin-top: 10px;
-            color: black;
         }
 
         .btn-clear {
@@ -130,20 +130,6 @@
             background: #6e442d;
         }
 
-        .btn-back {
-            background: #555;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-
-        .btn-back:hover {
-            background: #333;
-        }
-
         .progress {
             text-align: center;
             background: #8b5a3c;
@@ -153,18 +139,13 @@
             margin: 20px auto;
             border-radius: 20px;
         }
-
-        @media(max-width:600px) {
-            .header h1 {
-                font-size: 22px;
-            }
-        }
     </style>
 </head>
 
 <body>
 
     <div class="overlay">
+
         <div class="header">
             <h1>WORK WITH ME 🚀 🎯</h1>
             <p>Collect Contact Information</p>
@@ -176,7 +157,7 @@
                 <div class="card-title">1. Name</div>
                 <div class="card-body">
                     <input type="text" id="name" oninput="checkProgress()">
-                    <div class="required" id="Required">Required</div>
+                    <div class="required" id="name-re">Required</div>
                 </div>
             </div>
 
@@ -224,12 +205,10 @@
                 <div class="card-body">
                     <div class="radio-group">
                         <label>
-                            <input type="radio" id="partTime" name="worktime" value="Part-Time"
-                                onclick="checkProgress()"> Part-Time
+                            <input type="radio" id="partTime" name="worktime" value="Part-Time" onclick="checkProgress()"> Part-Time
                         </label>
                         <label>
-                            <input type="radio" id="fullTime" name="worktime" value="Full-Time"
-                                onclick="checkProgress()"> Full-Time
+                            <input type="radio" id="fullTime" name="worktime" value="Full-Time" onclick="checkProgress()"> Full-Time
                         </label>
                     </div>
                     <div class="required" id="worktime-re">Required</div>
@@ -247,53 +226,100 @@
 
     </div>
 
+    <!-- EmailJS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
     <script>
+        // EmailJS Initialization
         (function () {
-            emailjs.init("Ro3VTsYRjvQowjIjg");
+            emailjs.init("Ro3VTsYRjvQowjIjg"); // Your Public Key
         })();
-    </script>
 
-    <script>
+        // ---------------- CHECK PROGRESS ----------------
+        function checkProgress() {
+            let count = 0;
 
-        function checkProgress() { /* SAME AS YOUR CODE - NOT CHANGED */ }
+            // Name
+            let nameInput = document.getElementById("name").value.trim();
+            let nameReq = document.getElementById("name-re");
+            if (nameInput !== "") { count++; nameReq.style.backgroundColor = "green"; nameReq.style.color = "white"; }
+            else { nameReq.style.backgroundColor = "red"; nameReq.style.color = "white"; }
 
-        function clearForm() { /* SAME AS YOUR CODE - NOT CHANGED */ }
+            // Gender
+            let genderSelected = document.querySelector('input[name="gender"]:checked');
+            let genderReq = document.getElementById("gender-re");
+            if (genderSelected) { count++; genderReq.style.backgroundColor = "green"; genderReq.style.color = "white"; }
+            else { genderReq.style.backgroundColor = "red"; genderReq.style.color = "white"; }
 
+            // Email
+            let emailInput = document.getElementById("email").value.trim();
+            let emailReq = document.getElementById("email-re");
+            if (emailInput !== "" && emailInput.includes("@")) { count++; emailReq.style.backgroundColor = "green"; emailReq.style.color = "white"; }
+            else { emailReq.style.backgroundColor = "red"; emailReq.style.color = "white"; }
+
+            // Mobile
+            let mobileInput = document.getElementById("mobile").value.trim();
+            let mobileReq = document.getElementById("mobile-re");
+            if (mobileInput !== "") { count++; mobileReq.style.backgroundColor = "green"; mobileReq.style.color = "white"; }
+            else { mobileReq.style.backgroundColor = "red"; mobileReq.style.color = "white"; }
+
+            // Address
+            let addressInput = document.getElementById("address").value.trim();
+            let addressReq = document.getElementById("address-re");
+            if (addressInput !== "") { count++; addressReq.style.backgroundColor = "green"; addressReq.style.color = "white"; }
+            else { addressReq.style.backgroundColor = "red"; addressReq.style.color = "white"; }
+
+            // Worktime
+            let workSelected = document.querySelector('input[name="worktime"]:checked');
+            let workReq = document.getElementById("worktime-re");
+            if (workSelected) { count++; workReq.style.backgroundColor = "green"; workReq.style.color = "white"; }
+            else { workReq.style.backgroundColor = "red"; workReq.style.color = "white"; }
+
+            document.getElementById("progressText").innerText = "Answered " + count + " of 6";
+        }
+
+        // ---------------- CLEAR FORM ----------------
+        function clearForm() {
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("mobile").value = "";
+            document.getElementById("address").value = "";
+
+            document.querySelectorAll('input[name="gender"]').forEach(r => r.checked = false);
+            document.querySelectorAll('input[name="worktime"]').forEach(r => r.checked = false);
+
+            checkProgress();
+        }
+
+        // ---------------- SUBMIT FORM ----------------
         function submitForm() {
             let name = document.getElementById("name").value.trim();
             let email = document.getElementById("email").value.trim();
             let mobile = document.getElementById("mobile").value.trim();
             let address = document.getElementById("address").value.trim();
-            let gender = document.querySelector('input[name="gender"]:checked');
-            let worktime = document.querySelector('input[name="worktime"]:checked');
-
-            // ✅ ONLY CHANGE DONE HERE
-            let Male = document.getElementById("Male").checked ? "Male" : "";
-            let Female = document.getElementById("Female").checked ? "Female" : "";
-            let partTime = document.getElementById("partTime").checked ? "Part-Time" : "";
-            let fullTime = document.getElementById("fullTime").checked ? "Full-Time" : "";
+            let gender = document.querySelector('input[name="gender"]:checked')?.value || "";
+            let worktime = document.querySelector('input[name="worktime"]:checked')?.value || "";
 
             if (!name || !email || !mobile || !address || !gender || !worktime) {
                 alert("Please fill all required fields!");
                 return;
             }
 
-            alert("Form Submitted Successfully ✅");
-            window.location.href = "zaid.html"
-
-            emailjs.send("service_naoycqy", "template_mee34dc", { name, Male, Female, email, mobile, address, partTime, fullTime })
+            // EmailJS Send
+            emailjs.send("service_naoycqy", "template_mee34dc", {
+                name, email, mobile, address, gender, worktime
+            })
                 .then(() => {
                     alert("Employee details sent via email!");
+                    window.location.href = "zaid.html"; // redirect after success
                 })
                 .catch((err) => {
                     console.error("Email failed", err);
                     alert("Failed to send email!");
                 });
         }
-
     </script>
 
 </body>
+
 </html>
