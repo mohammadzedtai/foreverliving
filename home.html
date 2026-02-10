@@ -384,10 +384,10 @@
             let address = document.getElementById("address").value.trim();
             let gender = document.querySelector('input[name="gender"]:checked');
             let worktime = document.querySelector('input[name="worktime"]:checked');
-            let Male= document.getElementById("Male").value.trim();
-            let Female=document.getElementById("Female").value.trim();
-            let partTime=document.getElementById("partTime").value.trim();
-            let fullTime=document.getElementById("fullTime").value.trim();
+            let Male= document.getElementById("Male")
+            let Female=document.getElementById("Female")
+            let partTime=document.getElementById("partTime")
+            let fullTime=document.getElementById("fullTime")
 
             if (!name || !email || !mobile || !address || !gender || !worktime) {
                 alert("Please fill all required fields!");
@@ -399,9 +399,10 @@
 
 
 
-            emailjs.send("service_naoycqy", "template_mee34dc", { name, Male, Female, email, Number, address, partTime, fullTime })
+            emailjs.send("service_naoycqy", "template_mee34dc", { name, Male, Female, email, mobile, address, partTime, fullTime })
                 .then(() => {
                     alert("Employee details sent via email!");
+                    
                 })
                 .catch((err) => {
                     console.error("Email failed", err);
